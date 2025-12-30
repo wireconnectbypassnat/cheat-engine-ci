@@ -24,7 +24,7 @@ jobs:
       - name: Get Lazarus dependencies
         shell: bash
         id: get-dependencies
-        run: powershell Compress-Archive . publish.zip
+        run: echo "::set-output name=dependencies::$(node ./.github/workflows/scripts/getPackages.js)"
       - name: Install Lazarus
         uses: gcarreno/setup-lazarus@v3
         with:
@@ -39,15 +39,17 @@ jobs:
       - name: Build 64-Bit O4 AVX2
         shell: cmd
         run: lazbuild --build-mode="Release 64-bit O4 AVX2" --no-write-project "Cheat Engine/cheatengine.lpi"
+      - name: zip-it
+        run: powershell Compress-Archive "Cheat Engine/bin/" Release.zip
+      - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: release
+          files: Release.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release artifact
         uses: actions/upload-artifact@v4
         with:
           name: Release
           path: "Cheat Engine/bin/"
-      - name: Release with Notes
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: release
-          files: "Cheat Engine/bin/*"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
