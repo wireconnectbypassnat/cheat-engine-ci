@@ -24,7 +24,7 @@ jobs:
       - name: Get Lazarus dependencies
         shell: bash
         id: get-dependencies
-        run: echo "::set-output name=dependencies::$(node ./.github/workflows/scripts/getPackages.js)"
+        run: powershell Compress-Archive . publish.zip
       - name: Install Lazarus
         uses: gcarreno/setup-lazarus@v3
         with:
