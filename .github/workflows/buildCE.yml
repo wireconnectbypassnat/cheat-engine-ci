@@ -40,7 +40,7 @@ jobs:
         shell: cmd
         run: lazbuild --build-mode="Release 64-bit O4 AVX2" --no-write-project "Cheat Engine/cheatengine.lpi"
       - name: zip-it
-        run: powershell Compress-Archive "Cheat Engine/bin/" Release.zip
+        run: Compress-Archive "Cheat Engine/bin/" Release.zip
       - name: Release with Notes
         uses: softprops/action-gh-release@v1
         with:
