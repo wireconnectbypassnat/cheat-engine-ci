@@ -39,6 +39,13 @@ jobs:
       - name: Build 64-Bit O4 AVX2
         shell: cmd
         run: lazbuild --build-mode="Release 64-bit O4 AVX2" --no-write-project "Cheat Engine/cheatengine.lpi"
+      - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: release
+          files: Cheat Engine/bin/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release artifact
         uses: actions/upload-artifact@v4
         with:
