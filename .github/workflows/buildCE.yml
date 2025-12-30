@@ -15,7 +15,7 @@ jobs:
         uses: allenevans/set-env@v2.0.1
         with:
           LAZARUS_VERSION: 2.2.2
-          FPC_VERSION: 3.2.2
+          FPC_VERSION: 3.2.0
       - uses: actions/checkout@v2
       - name: Install npm dependencies
         shell: cmd
