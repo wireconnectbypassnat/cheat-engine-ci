@@ -15,7 +15,7 @@ jobs:
         uses: allenevans/set-env@v2.0.1
         with:
           LAZARUS_VERSION: 2.2.2
-          FPC_VERSION: 3.2.0
+          FPC_VERSION: 3.2.2
       - uses: actions/checkout@v2
       - name: Install npm dependencies
         shell: cmd
@@ -26,7 +26,7 @@ jobs:
         id: get-dependencies
         run: echo "::set-output name=dependencies::$(node ./.github/workflows/scripts/getPackages.js)"
       - name: Install Lazarus
-        uses: gcarreno/setup-lazarus@v3.0.2
+        uses: gcarreno/setup-lazarus@dist
         with:
           lazarus-version: ${{ env.LAZARUS_VERSION }}
           include-packages: ${{ steps.get-dependencies.outputs.dependencies }}
