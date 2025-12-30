@@ -2,6 +2,6 @@
   "name": "scripts",
   "version": "1.0.0",
   "dependencies": {
-    "@small": "0.2.9"
+    "small": "0.2.9"
   }
 }
