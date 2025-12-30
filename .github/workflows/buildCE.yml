@@ -30,15 +30,9 @@ jobs:
         with:
           lazarus-version: ${{ env.LAZARUS_VERSION }}
           include-packages: ${{ steps.get-dependencies.outputs.dependencies }}
-      - name: Install 32bit compat
-        shell: bash
-        run: node ./.github/workflows/scripts/install32bitCompat.js
         env:
           LAZARUS_VERSION: ${{ env.LAZARUS_VERSION }}
           FPC_VERSION: ${{ env.FPC_VERSION }}
-      - name: Build 32-Bit
-        shell: cmd
-        run: lazbuild --build-mode="Release 32-bit" --no-write-project "Cheat Engine/cheatengine.lpi"
       - name: Build 64-Bit
         shell: cmd
         run: lazbuild --build-mode="Release 64-bit" --no-write-project "Cheat Engine/cheatengine.lpi"
